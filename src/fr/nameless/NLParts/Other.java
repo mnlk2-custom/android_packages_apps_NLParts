@@ -126,43 +126,43 @@ implements Preference.OnPreferenceChangeListener {
         return false;
     }
     
-     public boolean onPreferenceChange(Preference preference, Object objValue) {
-         final String key = preference.getKey();
-         if (preference == mAdbWifiPref) {
-      boolean have = mAdbWifiPref.isChecked();
-      if (!have) {
-      WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-      WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-      String ipAddress = null;
-      if (wifiInfo != null) {
-      long addr = wifiInfo.getIpAddress();
-      if (addr != 0) {
-      // handle negative values whe first octet > 127
-      if (addr < 0) addr += 0x100000000L;
-      ipAddress = String.format("%d.%d.%d.%d", addr & 0xFF, (addr >> 8) & 0xFF, (addr >> 16) & 0xFF, (addr >> 24) & 0xFF);
-      }
-      }
-      String[] commands = {
-      "setprop service.adb.tcp.port " + ADB_PORT,
-      "stop adbd",
-      "start adbd"
-      };
-      sendshell(commands, false,
-      getResources().getString(R.string.adb_instructions_on)
-      .replaceFirst("%ip%", ipAddress)
-      .replaceFirst("%P%", ADB_PORT));
-      } else {
-      String[] commands = {
-      "setprop service.adb.tcp.port -1",
-      "stop adbd",
-      "start adbd"
-      };
-      sendshell(commands, false, getResources().getString(R.string.adb_instructions_off));
-      }
-         }
-            return true;
-    }
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        final String key = preference.getKey();
+        if (preference == mAdbWifiPref) {
+                boolean have = mAdbWifiPref.isChecked();
+                if (!have) {
+                        WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+                        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                        String ipAddress = null;
+                        if (wifiInfo != null) {
+                                long addr = wifiInfo.getIpAddress();
+                                if (addr != 0) {
+                                        // handle negative values whe first octet > 127
+                                        if (addr < 0) addr += 0x100000000L;
+                                        ipAddress = String.format("%d.%d.%d.%d", addr & 0xFF, (addr >> 8) & 0xFF, (addr >> 16) & 0xFF, (addr >> 24) & 0xFF);
+                                }
 
+                                String[] commands = {
+                                "setprop service.adb.tcp.port " + ADB_PORT,
+                                "stop adbd",
+                                "start adbd"
+                                };
+                                sendshell(commands, false,
+                                getResources().getString(R.string.adb_instructions_on)
+                                .replaceFirst("%ip%", ipAddress)
+                                .replaceFirst("%P%", ADB_PORT));
+                        }
+                } else {
+                        String[] commands = {
+                        "setprop service.adb.tcp.port -1",
+                        "stop adbd",
+                        "start adbd"
+                        };
+                        sendshell(commands, false, getResources().getString(R.string.adb_instructions_off));
+                }
+        }
+        return true;
+}
 
 
            /**
