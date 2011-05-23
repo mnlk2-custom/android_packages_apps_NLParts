@@ -2,10 +2,10 @@
 <resources>
     <string name="app_name">Paramètres Avancés</string>
     <string name="system">Système</string>
-    <string name="lockscreen">Lockscreen</string>
+    <string name="lockscreen">Veille</string>
     <string name="divers">Divers</string>
     <string name="update">Mise à jour</string>
-    <string name="display_settings_title_head">Paramètres Avancés</string>
+    <string name="display_settings_title_head">Nameless</string>
     
         <!-- Divers -->
     <string name="mnlk_Settings">Paramètres Avancés</string>
@@ -38,10 +38,10 @@
     <string name="pref_electron_beam_animation_off">Animation de fermeture</string>
     
     	<!-- System Info-->
-    <string name="system_info_title">System Info</string>
-    <string name="cpu_info">CPU Info</string>
-    <string name="mem_info">Mem Info (Dispo./total)</string>
-    <string name="mod_version">Mod version</string>
+    <string name="system_info_title">Info Système</string>
+    <string name="cpu_info">Info CPU</string>
+    <string name="mem_info">Info Mémoire (Dispo./total)</string>
+    <string name="mod_version">Version</string>
     <string name="mod_version_default">Inconnu</string>
     <string name="device_info_default">"Inconnu"</string>
     
